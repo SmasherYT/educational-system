@@ -1,0 +1,154 @@
+<main>
+    <div class="filter-wrapper">
+        <div class="filter-nav">
+            <div class="filter-btn">
+                <i class="fa-solid fa-x close-btn"></i>
+                <span class="filter-txt">الخيارات</span>
+                <i class="fa-solid fa-sliders filter-settings"></i>
+
+            </div>
+        </div>
+        <div class="lessons-main">
+            <div class="filter-sidebar">
+                <h4>المرحلة الدراسية</h4>
+                <hr>
+                <details class="custom-select">
+                    <summary class="radios">
+                        <span>إختيار المرحلة</span>
+                        <input type="radio" name="grade" id="grade1" title="الصف الأول الإبتدائي"
+                            autocomplete="off">
+                        <input type="radio" name="grade" id="grade2" title="الصف الثاني الإبتدائي"
+                            autocomplete="off">
+                        <input type="radio" name="grade" id="grade3" title="الصف الثالث الإبتدائي"
+                            autocomplete="off">
+                        <input type="radio" name="grade" id="grade4" title="الصف الرابع الإبتدائي"
+                            autocomplete="off">
+                        <input type="radio" name="grade" id="grade5" title="الصف الخامس الإبتدائي"
+                            autocomplete="off">
+                        <input type="radio" name="grade" id="grade6" title="الصف السادس الإبتدائي"
+                            autocomplete="off">
+                        <input type="radio" name="grade" id="grade7" title="الصف الأول الإعدادي" autocomplete="off">
+                        <input type="radio" name="grade" id="grade8" title="الصف الثاني الإعدادي"
+                            autocomplete="off">
+                        <input type="radio" name="grade" id="grade9" title="الصف الثالث الإعدادي"
+                            autocomplete="off">
+                        <input type="radio" name="grade" id="grade10" title="الصف الأول الثانوي" autocomplete="off">
+                        <input type="radio" name="grade" id="grade11" title="الصف الثاني الثانوي"
+                            autocomplete="off">
+                        <input type="radio" name="grade" id="grade12" title="الصف الثالث الثانوي"
+                            autocomplete="off">
+                    </summary>
+                    <ul class="list">
+                        <li>
+                            <label for="grade1">
+                                الصف الأول الإبتدائي
+                                <span></span>
+                            </label>
+                        </li>
+                        <li>
+                            <label for="grade2">الصف الثاني الإبتدائي</label>
+                        </li>
+                        <li>
+                            <label for="grade3">الصف الثالث الإبتدائي</label>
+                        </li>
+                        <li>
+                            <label for="grade4">الصف الرابع الإبتدائي</label>
+                        </li>
+                        <li>
+                            <label for="grade5">الصف الخامس الإبتدائي</label>
+                        </li>
+                        <li>
+                            <label for="grade6">الصف السادس الإبتدائي</label>
+                        </li>
+                        <li>
+                            <label for="grade7">الصف الأول الإعدادي</label>
+                        </li>
+                        <li>
+                            <label for="grade8">الصف الثاني الإعدادي</label>
+                        </li>
+                        <li>
+                            <label for="grade9">الصف الثالث الإعدادي</label>
+                        </li>
+                        <li>
+                            <label for="grade10">الصف الأول الثانوي</label>
+                        </li>
+                        <li>
+                            <label for="grade11">الصف الثاني الثانوي</label>
+                        </li>
+                        <li>
+                            <label for="grade12">الصف الثالث الثانوي</label>
+                        </li>
+                    </ul>
+                </details>
+                <h4>الفصول الدراسية</h4>
+                <hr>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" class="btn-check" name="term" id="term1" autocomplete="off">
+                    <label class="btn btn-outline-secondary" for="term1">الفصل الدراسي الأول</label>
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" class="btn-check" name="term" id="term2" autocomplete="off">
+                    <label class="btn btn-outline-secondary" for="term2">الفصل الدراسي الثاني</label>
+                </div>
+                <h4>خيارات أخرى للدرس</h4>
+                <hr>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" class="btn-check" name="hasqs" id="hasqs" autocomplete="off">
+                    <label class="btn btn-outline-secondary" for="hasqs">يوجد أسألة</label>
+                </div>
+                <button class="btn btn-outline-success" id="apply-options">تطبيق الخيارات</button>
+            </div>
+            <h1 class="lessons-title">الدروس <%= isClass ? "الخاصة بالفصل" : "" %></h1>
+            <hr>
+            <div class="lessons py-5">
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                        <% if(lessons.length === 0) { %> <h2 class="no-lessons m-auto">لا يوجد دروس</h2> <% } %>
+                        <% lessons.forEach(lesson=>{ %>
+                        <a class="lesson-link" href="/<%= isClass ? `class/${theClass.id}` : "lesson" %>/<%= lesson.id %>">
+                            <div class="col">
+                                <div class="lesson card shadow-sm">
+                                    <% if(!lesson.thumbnail){ %>
+                                    <svg class="card-img-top" width="100%" height="225"
+                                        xmlns="http://www.w3.org/2000/svg" role="img"
+                                        aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
+                                        focusable="false">
+                                        <title><%= lesson.title %></title>
+                                        <rect width="100%" height="100%" fill="#55595c" /><text
+                                            dominant-baseline="middle" text-anchor="middle" x="50%" y="50%"
+                                            fill="#eceeef" dy=".3em"><%= lesson.title %></text>
+                                    </svg>
+                                    <% } else { %>
+                                    <img src="<%= lesson.thumbnail %>" alt="<%= lesson.title %>"
+                                        class="card-img-top">
+                                    <% } %>
+                                    <div class="card-body">
+                                        <p class="card-text">
+                                            <p class="m-auto" style="width: fit-content;">
+                                                <%= lesson.title %>
+                                            </p>
+                                            <% if(lesson.description) { %><br><% } %>
+                                            <p style="color: var(--font-color);">
+                                                <%= lesson.description %>
+                                            </p>
+                                        </p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <small class="text-muted">
+                                                <%= moment(lesson.published).fromNow() %>
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <% }) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <%- include("../partials/chatbox.ejs") %>
+    <%- include("../partials/footer.ejs") %>
+</main>

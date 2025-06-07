@@ -1,0 +1,111 @@
+<% if(lesson){ %>
+<main>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <% if(lesson.video){ %>
+            <button class="nav-link active" id="nav-video-tab" data-bs-toggle="tab" data-bs-target="#nav-video"
+                type="button" role="tab" aria-controls="nav-video" aria-selected="true">الفيديو <i
+                    class="fa-solid fa-play"></i></button>
+            <% } %>
+            <% if(lesson.questions && lesson.questions.length){ %>
+            <button class="nav-link <% if(!lesson.video){ %>active<% } %>" id="nav-questions-tab" data-bs-toggle="tab"
+                data-bs-target="#nav-questions" type="button" role="tab" aria-controls="nav-questions"
+                aria-selected="false">الأسئلة <i class="fa-solid fa-clipboard-question"></i></button>
+            <% } %>
+            <% if(lesson.explainer){ %>
+            <button
+                class="nav-link <% if(!lesson.video && !(lesson.questions && lesson.questions.length)){ %>active<% } %>"
+                id="nav-explainer-tab" data-bs-toggle="tab" data-bs-target="#nav-explainer" type="button" role="tab"
+                aria-controls="nav-explainer" aria-selected="false">الشرح <i class="fa-solid fa-book"></i></button>
+            <% } %>
+            <% if(lesson.files && lesson.files.length) { %>
+            <button
+                class="nav-link <% if(!lesson.video && !(lesson.questions && lesson.questions.length) && !lesson.explainer) { %>active<% } %>"
+                id="nav-files-tab" data-bs-toggle="tab" data-bs-target="#nav-files" type="button" role="tab"
+                aria-controls="nav-files" aria-selected="false">الملزمات <i
+                    class="fa-solid fa-file-arrow-down"></i></button>
+            <% } %>
+
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <% if(lesson.video){ %>
+        <div class="tab-pane fade show active" id="nav-video" role="tabpanel" aria-labelledby="nav-video-tab">
+            <% video_path = `/public/videos/${lesson.video}` %>
+            <%- include("../partials/video-player.ejs") %>
+        </div>
+        <% } %>
+        <% if(lesson.questions && lesson.questions.length){ %>
+        <div class="tab-pane fade" id="nav-questions" role="tabpanel" aria-labelledby="nav-questions-tab">
+            <div class="d-flex align-items-start">
+                <div class="nav flex-column nav-pills questions-no" id="v-pills-tab" role="tablist"
+                    aria-orientation="vertical">
+                    <% for(let i=0; i < lesson.questions.length; i++){ %>
+                    <button class="nav-link bg-primary <% if(i === 0){ %>active<% } %>"
+                        id="v-pills-<%= `q${i+1}` %>-tab" data-bs-toggle="pill"
+                        data-bs-target="#v-pills-<%= `q${i+1}` %>" type="button" role="tab"
+                        aria-controls="v-pills-<%= `q${i+1}` %>"
+                        aria-selected="<%= i === 0 ? `true` : `false` %>"><%= i+1 %></button>
+                    <% } %>
+                </div>
+                <div class="tab-content questions" id="v-pills-tabContent">
+                    <% for(let i=0; i < lesson.questions.length; i++){ %>
+                    <div class="tab-pane fade <% if(i === 0){ %>show active<% } %>" id="v-pills-<%= `q${i+1}` %>"
+                        role="tabpanel" aria-labelledby="v-pills-<%= `q${i+1}` %>-tab">
+                        <div class="question">
+                            <div class="question-text"><%= `${i+1}- ${lesson.questions[i].question}` %></div>
+                            <div class="question-answers">
+                                <% for(let j = 0; j < lesson.questions[i].answers.length; j++){ %>
+                                <p>
+                                    <input autocomplete="off" type="radio" id="<%= `q${i+1}-${j+1}` %>"
+                                        name="<%= `q${i+1}` %>"
+                                        value="<% if(lesson.questions[i].choice === j+1){ %>true<% }else{ %>false<% } %>"
+                                        <% if(j+1 === lesson.questions[i].choice){ %>data-why="<%= lesson.questions[i].why%>"
+                                        <% } %>>
+                                    <label
+                                        for="<%= `q${i+1}-${j+1}` %>"><%= `${j+1}- ` %><%= lesson.questions[i].answers[j] %></label>
+                                </p>
+                                <% } %>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary submitBtn"
+                            id="submitAnswer-<%= `q${i+1}` %>"><%= i < lesson.questions.length-1 ? "التالي" : "تحقق" %></button>
+
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+            <div class="toast-container position-fixed bottom-0 start-0 p-3">
+                <div id="liveToast" class="toast bg-success" role="alert" data-bs-delay="3000" aria-live="assertive"
+                    aria-atomic="true">
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+
+                    <div class="toast-body">
+                        ....
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% } %>
+        <% if(lesson.files && lesson.files.length){ %>
+        <div class="tab-pane fade" id="nav-files" role="tabpanel" aria-labelledby="nav-files-tab">
+            <ul class="files">
+                <% for(let i = 0; i < lesson.files.length; i++){ %>
+                <li class="file">
+                    <a href="<%= lesson.files[i].src %>"
+                        download="<%= lesson.files[i].name %>"><%= `${i+1}- ${lesson.files[i].name}` %><i
+                            class="fa-solid fa-file"></i></a>
+                </li>
+                <% } %>
+            </ul>
+        </div>
+        <% } %>
+        <% if(lesson.explainer){ %>
+        <div class="tab-pane fade" id="nav-explainer" role="tabpanel" aria-labelledby="nav-explainer-tab">
+            <%- lesson.explainer.replace(/\n/g, "<br>") %>
+        </div>
+        <% } %>
+    </div>
+    <%- include("../partials/chatbox.ejs") %>
+</main>
+<% } %>

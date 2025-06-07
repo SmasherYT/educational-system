@@ -1,0 +1,87 @@
+{
+    "lessons": [{
+        "id": "CnX9Pb7tFCa2sBXxqmL3J",
+        "thumbnail": null,
+        "title": "Oscillatory Motion",
+        "description": "",
+        "explainer": "Here goes explaining of the lesson 'Oscillatory motion' in text.\nThis is the readable explainer <img src=\"/public/images/pendulum.png\">",
+        "video": "video.mp4",
+        "files": [{
+            "name": "my pdf",
+            "src": "/public/files/شرح الموقع.pdf"
+        }],
+        "grade": 11,
+        "term": 1,
+        "published": 1670701377383,
+        "questions": [{
+                "question": "Amplitude equals:",
+                "answers": [
+                    "4 times periodic time",
+                    "half periodic time",
+                    "2 times periodic time",
+                    "quarter periodic time"
+                ],
+                "choice": 4,
+                "why": "Periodic time consists of 4 amplitudes"
+            },
+            {
+                "question": "If a vibrating object takes 0.1s to complete one oscillation, then the number of complete oscillations that is made by the object during 100s equals ..... oscillations.",
+                "answers": [
+                    "10",
+                    "100",
+                    "1000",
+                    "10000"
+                ],
+                "choice": 3,
+                "why": ""
+            }
+        ]
+    }],
+    "classes": [{
+        "title": "Lets study",
+        "description": "study sessions",
+        "thumbnail": null,
+        "id": "zAtAxJAZXSR6J5oqqXgNN",
+        "author": "Mohanad",
+        "authorId": "l4u_8bb2MRxBGfV-c9BwV",
+        "students": ["BtHrtI9cxfhvjrH_ryM4s"],
+        "lessons": [{
+            "id": "CnX9Pb7tFCa2sBXxqmL3J",
+            "thumbnail": null,
+            "title": "Oscillatory Motion",
+            "description": "",
+            "explainer": "Here goes explaining of the lesson 'Oscillatory motion' in text.\nThis is the readable explainer <img src=\"/public/images/pendulum.png\">",
+            "video": "video.mp4",
+            "files": [{
+                "name": "my pdf",
+                "src": "/public/files/شرح الموقع.pdf"
+            }],
+            "grade": 11,
+            "term": 1,
+            "published": 1670701377383,
+            "questions": [{
+                    "question": "Amplitude equals:",
+                    "answers": [
+                        "4 times periodic time",
+                        "half periodic time",
+                        "2 times periodic time",
+                        "quarter periodic time"
+                    ],
+                    "choice": 4,
+                    "why": "Periodic time consists of 4 amplitudes"
+                },
+                {
+                    "question": "If a vibrating object takes 0.1s to complete one oscillation, then the number of complete oscillations that is made by the object during 100s equals ..... oscillations.",
+                    "answers": [
+                        "10",
+                        "100",
+                        "1000",
+                        "10000"
+                    ],
+                    "choice": 3,
+                    "why": ""
+                }
+            ]
+        }]
+    }]
+}
