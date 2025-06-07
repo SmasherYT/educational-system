@@ -16,6 +16,3 @@ This website includes a full educational system including lessons, classes, acco
 more to be added to this project
 
 -- Mohanad Nader
-
-# educational-system
-An educational system website with classes and lessons with file, video &amp; MCQ attachments with explanation provided
